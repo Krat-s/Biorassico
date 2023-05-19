@@ -1,8 +1,7 @@
-window.addEventListener('scroll', onScroll)
+window.addEventListener('scroll', onScroll);
 
-onScroll()
+
 function onScroll() {
-  showNavOnScroll()
   showBackToTopButtonOnScroll()
 
   activateMenuAtCurrentSection(home)
@@ -10,6 +9,21 @@ function onScroll() {
   activateMenuAtCurrentSection(about)
   activateMenuAtCurrentSection(contact)
 }
+
+window.onscroll = function() {
+var elemento = document.getElementById("navigation");
+if (window.scrollY > 0) {
+  elemento.classList.add("scroll");
+} else {
+  elemento.classList.remove("scroll");
+}
+
+};
+
+
+
+
+//Funcionando (acho)
 
 function activateMenuAtCurrentSection(section) {
   const targetLine = scrollY + innerHeight / 2
@@ -38,14 +52,7 @@ function activateMenuAtCurrentSection(section) {
   }
 }
 
-function showNavOnScroll() {
-  if (scrollY > 0) {
-    navigation.classList.add('scroll')
-  } else {
-    navigation.classList.remove('scroll')
-  }
-}
-
+// Funcionando
 function showBackToTopButtonOnScroll() {
   if (scrollY > 550) {
     backToTopButton.classList.add('show')
@@ -53,6 +60,20 @@ function showBackToTopButtonOnScroll() {
     backToTopButton.classList.remove('show')
   }
 }
+
+
+// Não funciona - Aprender como funciona o esquema de adicionar classe com o onscroll
+//function onScroll() {
+
+//function onScroll {
+ //if (scrollY > 0) {
+// navigation.classList.add('scroll')
+//} else {
+ // navigation.classList.remove('scroll')
+ // } }
+//} 
+
+//O resto não sei se tá funcionando
 
 function openMenu() {
   document.body.classList.add('menu-expanded')
