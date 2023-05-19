@@ -231,10 +231,7 @@ nav#navigation.scroll .menu a.button {
 
 nav#navigation.scroll .menu a.button:hover {
   background-color: var(--brand-dark);
-  /*filter: brightness(1.3);   Efeito de brilho, devem ter explicado na aula mas não quero usar mais*/
   color: var(--secundary-color);
-  /*border: solid 0.1rem;
-  border-color: black;*/
 }
 
 nav#navigation.scroll {
