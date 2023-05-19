@@ -8,6 +8,7 @@
 :root {
   --hue: 180;
   --primary-color: hsl(var(--hue), 100%, 26%);
+  --secundary-color: white;
   --headline: hsl(210, 11%, 15%);
   --paragraph: hsl(210, 9%, 31%);
 
@@ -20,7 +21,7 @@
 
   font-size: 62.5%; /* 1rem = 10px */
 
-  --nav-height: 7.2rem;
+  --nav-height: 6.8rem;
 }
 
 html {
@@ -55,7 +56,14 @@ ul {
 
 img {
   max-width: 100%;
-}
+  }
+
+.borda {
+  border: 0.6rem solid;
+  border-color: var(--primary-color);
+  border-radius: 2rem;
+  }
+
 
 section {
   padding-block: 10rem;
@@ -96,6 +104,7 @@ section .content p {
 }
 
 .button {
+  /*Fale com agente!*/
   background: var(--primary-color);
 
   border: none;
@@ -138,26 +147,26 @@ section .content p {
 }
 
 #navigation .logo path[fill*='#667FA8'],
-#navigation .logo rect[fill*='#667FA8'],
-#backToTopButton circle {
-  fill: var(--primary-color);
+#navigation .logo rect[fill*='#667FA8'] {
+  fill: var(--secundary-color);
 }
 
-button.open-menu path[stroke*='#00856F'],
+button .open-menu path[stroke*='#00856F'],
 #contact li path {
   stroke: var(--primary-color);
 }
 
-body.menu-expanded #navigation .logo path,
+body .menu-expanded #navigation .logo path,
 #navigation.scroll .logo path,
 #navigation.scroll .logo rect {
-  fill: white;
+  fill: #00856F;
 }
 
-#navigation.scroll button.open-menu path[stroke*='#00856F'] {
+#navigation .scroll button.open-menu path[stroke*='#00856F'] {
   stroke: white;
   fill: white;
 }
+
 
 
 
@@ -172,7 +181,11 @@ nav {
   width: 100vw;
 
   z-index: 100;
+  visibility: visible;
+  
+  background-color: var(--primary-color);
 }
+
 
 nav .wrapper {
   display: flex;
@@ -180,9 +193,7 @@ nav .wrapper {
   justify-content: space-between;
 }
 
-nav.scroll {
-  background: var(--primary-color);
-}
+
 
 nav button {
   background: none;
@@ -190,10 +201,54 @@ nav button {
   cursor: pointer;
 }
 
-nav .menu,
-nav .close-menu {
+nav.menu,
+nav.close-menu {
   position: fixed;
 }
+
+/*Scroll nav*/
+nav#navigation.scroll .menu ul li a {
+  color: var(--primary-color);
+  opacity: 0.6;
+}
+
+nav#navigation.scroll .menu li a::after {
+  background-color: var(--primary-color);
+}
+
+nav#navigation.scroll .menu li a.active,
+nav#navigation.scroll .menu li a:hover {
+  opacity: 1;
+}
+
+nav#navigation.scroll .menu a.button {
+  border: solid 0.2rem;
+  border-color: var(--brand-light-2);
+  color: var(--secundary-color);
+  background-color: var(--primary-color);
+}
+
+
+nav#navigation.scroll .menu a.button:hover {
+  background-color: var(--brand-dark);
+  /*filter: brightness(1.3);   Efeito de brilho, devem ter explicado na aula mas não quero usar mais*/
+  color: var(--secundary-color);
+  /*border: solid 0.1rem;
+  border-color: black;*/
+}
+
+nav#navigation.scroll {
+ visibility: visible;
+ background-color: var(--secundary-color); 
+ transition: transform 300ms;
+  transform: translateY(0);
+}
+
+#navigation.scroll .logo path[fill*='#667FA8'],
+#navigation.scroll .logo rect[fill*='#667FA8'] {
+fill: var(--primary-color);
+}
+
 
 /*=== MENU-EXPANDED =================================*/
 body.menu-expanded {
@@ -452,7 +507,7 @@ footer .logo svg {
   height: 3.1rem;
 }
 footer .logo path {
-  fill: white;
+  fill: var(--secundary-color);
 }
 
 footer p {
@@ -467,6 +522,10 @@ footer .social-links {
 }
 
 /*=== BACK TO TOP =================================*/
+#backToTopButton circle {
+  fill: var(--primary-color);
+}
+
 #backToTopButton {
   position: fixed;
   bottom: 1rem;
@@ -552,21 +611,23 @@ footer .social-links {
   }
 
   nav#navigation .menu ul li a {
-    color: var(--primary-color);
+    font-size: 1.7rem;
+    color: var(--secundary-color);
     opacity: 0.7;
   }
 
   nav#navigation .menu a.button {
+    /*a gente*/
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 1rem 2.4rem;
 
-    border: 1px solid var(--primary-color);
+    border: 0.2rem solid var(--secundary-color);
     border-radius: 4rem;
-
-    color: var(--primary-color);
-
+    
+    color: var(--secundary-color);
+    
     font-weight: 700;
     font-size: 1.4rem;
     line-height: 1.8rem;
@@ -574,21 +635,13 @@ footer .social-links {
   }
 
   nav#navigation .menu a.button:hover {
-    background-color: var(--primary-color);
-    border: none;
-    color: white;
+    background-color: var(--brand-dark);
+    border: solid 0.2rem;
+    border-color: var(--secundary-color);
+    
   }
 
-  nav#navigation.scroll .menu ul li a {
-    color: var(--brand-light-2);
-    opacity: 0.6;
-  }
-
-  nav#navigation.scroll .menu a.button {
-    border-color: white;
-    color: white;
-  }
-
+ 
   nav#navigation .menu li a {
     transition: opacity 0.4s;
   }
@@ -597,9 +650,12 @@ footer .social-links {
   nav#navigation .menu li a:hover {
     opacity: 1;
     font-weight: 700;
+
+    color: var(--secundary-color);
   }
 
   nav#navigation .menu li a::after {
+    /*Linha*/
     content: '';
     width: 0%;
     height: 2px;
@@ -614,27 +670,12 @@ footer .social-links {
     transition: width 0.2s;
   }
 
-  nav#navigation.scroll .menu li a::after {
-    background-color: white;
-  }
-
   nav#navigation .menu li a.active::after,
   nav#navigation .menu li a:hover::after {
     padding-inline: 0.8rem;
     width: 100%;
   }
 
-  nav#navigation.scroll .menu li a.active,
-  nav#navigation.scroll .menu li a:hover {
-    opacity: 1;
-  }
-
-  nav#navigation.scroll .menu a.button.active,
-  nav#navigation.scroll .menu a.button:hover {
-    background-color: var(--primary-color);
-    filter: brightness(1.3);
-    border: none;
-  }
 
   /*=== HOME =================================*/
   #home::before {
@@ -760,7 +801,7 @@ footer .social-links {
 }
 
 /*TENTE
-DAR UM JEITO DE COLOCAR MEU LOGO NO HTML, detalhe: tem dois tipos de svg, um vetor ou texto que possuem "path" e outro de imagem, as da imagem são maiores e sem o "Path", ele é a cor e necessário para algumas configurações
+DAR UM JEITO DE COLOCAR MEU LOGO NO HTML, detalhe precisa ser em svg: tem dois tipos de svg, um vetor ou texto que possuem "path" e outro de imagem, as da imagem são maiores e sem o "Path", ele é a cor e necessário para algumas configurações
 Solução: Exportar logo para o fig e transforma-lo em svg de alguma forma, provável que eu precise desenhar
 <img src="Assents/Biologo.svg" alt="LOGODOSITE">
 
